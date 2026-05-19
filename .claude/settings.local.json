@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh api *)",
+      "Bash(GIT_TERMINAL_PROMPT=0 git *)",
+      "Read(//usr/local/bin/**)",
+      "Bash(/opt/homebrew/bin/git --version)",
+      "Bash(/usr/local/bin/git --version)",
+      "Bash(brew --version)",
+      "Bash(git *)",
+      "Bash(python3 *)",
+      "Bash(pip3 install *)",
+      "Bash(curl -s http://127.0.0.1:5000/)",
+      "Bash(curl -s -X POST -d \"name=TestPlayer\" -c /tmp/cookies.txt -L http://127.0.0.1:5000/start)",
+      "Bash(curl -s -X POST -d \"choice=0\" -b /tmp/cookies.txt -L http://127.0.0.1:5000/choose)",
+      "Bash(curl -s -X POST -d \"choice=1\" -b /tmp/cookies.txt -L http://127.0.0.1:5000/choose)",
+      "Bash(curl -s -b /tmp/cookies.txt http://127.0.0.1:5000/ending)",
+      "Bash(curl -s -X POST -d \"name=Alex\" -c /tmp/cookies2.txt -L http://127.0.0.1:5000/start)",
+      "Bash(curl -s -X POST -d \"name=Alex\" -c /tmp/cookies3.txt http://127.0.0.1:5000/start -w \"\\\\nHTTP Code: %{http_code}\\\\nRedirect: %{redirect_url}\\\\n\" -o /dev/null)",
+      "Bash(curl -s -b /tmp/cookies3.txt http://127.0.0.1:5000/play)"
+    ]
+  }
+}

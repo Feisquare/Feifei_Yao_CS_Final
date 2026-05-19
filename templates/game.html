@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+
+        {% if screen == "start" %}
+        <!-- ── START SCREEN ── -->
+        <div class="center-box">
+            <h1 class="title">LIFE SIMULATOR</h1>
+            <p class="subtitle">Every choice shapes your future</p>
+
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+
+            <form method="POST" action="/start" class="start-form">
+                <label for="name">Enter your name:</label>
+                <input type="text" id="name" name="name" placeholder="Your name..." autofocus>
+                <button type="submit" class="btn btn-primary">New Game</button>
+            </form>
+        </div>
+
+        {% elif screen == "game" %}
+        <!-- ── GAME SCREEN ── -->
+        <div class="top-bar">
+            <span class="player-name">{{ player.name }}</span>
+            <span class="progress">Year {{ current }} of {{ total }}</span>
+            <span class="age">Age {{ event.year }}</span>
+        </div>
+
+        <div class="story-card">
+            <p>{{ event.text }}</p>
+        </div>
+
+        <h3 class="choose-label">What will you do?</h3>
+
+        <form method="POST" action="/choose" class="choices">
+            {% for choice in event.choices %}
+            <button type="submit" name="choice" value="{{ loop.index0 }}" class="btn btn-choice">
+                <span class="choice-num">{{ loop.index }}.</span>
+                {{ choice.text }}
+            </button>
+            {% endfor %}
+        </form>
+
+        <div class="stats-panel">
+            <h4>Stats</h4>
+            {% for stat, value in player.stats.items() %}
+            <div class="stat-row">
+                <span class="stat-name">{{ stat }}</span>
+                <div class="stat-bar-bg">
+                    <div class="stat-bar-fill" style="width: {{ value }}%; background-color: {{ stat_colors[stat] }};"></div>
+                </div>
+                <span class="stat-value" style="color: {{ stat_colors[stat] }};">{{ value }}</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% elif screen == "ending" %}
+        <!-- ── ENDING SCREEN ── -->
+        <div class="center-box">
+            <h1 class="title">Your Life Story</h1>
+            <p class="subtitle">{{ player.name }}'s journey is complete</p>
+
+            <div class="final-stats">
+                {% for stat, value in player.stats.items() %}
+                <div class="stat-row">
+                    <span class="stat-name">{{ stat }}</span>
+                    <div class="stat-bar-bg">
+                        <div class="stat-bar-fill" style="width: {{ value }}%; background-color: {{ stat_colors[stat] }};"></div>
+                    </div>
+                    <span class="stat-value" style="color: {{ stat_colors[stat] }};">{{ value }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <p class="dominant">Your dominant trait: <strong style="color: {{ stat_colors[dominant] }};">{{ dominant }}</strong></p>
+
+            <div class="ending-card">
+                <p>{{ ending_text }}</p>
+            </div>
+
+            <div class="end-btns">
+                <a href="/reset" class="btn btn-primary">Play Again</a>
+            </div>
+        </div>
+
+        {% endif %}
+
+    </div>
+</body>
+</html>
