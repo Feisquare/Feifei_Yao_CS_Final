@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from main import (
-    Player, build_events, get_ending,
+    Player, build_events, get_ending, get_available_choices,
     GENDER_OPTIONS, FAMILY_OPTIONS, APPEARANCE_OPTIONS, PERSONALITY_OPTIONS,
 )
 
@@ -86,7 +86,7 @@ def personality():
         player.personality = request.form.get("personality", "outgoing")
         player.apply_background()
         save_player(player)
-        session["current_event"] = 0
+        session["current_year"] = 0
         _game_events[player.name] = build_events(player)
         session["game_key"] = player.name
         return redirect(url_for("play"))
@@ -99,28 +99,38 @@ def personality():
 def play():
     player = get_player()
     game_key = session.get("game_key", "")
-    events = _game_events.get(game_key, [])
-    current = session.get("current_event", 0)
 
     if not player:
         return redirect(url_for("index"))
 
-    if not events:
-        # Rebuild events if missing (e.g. after server restart)
-        events = build_events(player)
-        _game_events[game_key] = events
+    # Always rebuild events to pick up consequence events based on history
+    events = build_events(player)
+    _game_events[game_key] = events
 
-    if current >= len(events):
+    current_year = session.get("current_year", 0)
+
+    # Find the next event after the current year
+    next_event = None
+    next_idx = 0
+    for i, event in enumerate(events):
+        if event["year"] > current_year:
+            next_event = event
+            next_idx = i
+            break
+
+    if not next_event:
         return redirect(url_for("ending"))
 
-    event = events[current]
-    player.age = event["year"]
+    player.age = next_event["year"]
     save_player(player)
+
+    # Get available choices (some may be locked by stat requirements)
+    choices_with_status = get_available_choices(next_event["choices"], player)
 
     return render_template(
         "game.html", screen="game", player=player,
-        event=event, current=current + 1, total=len(events),
-        stat_colors=STAT_COLORS,
+        event=next_event, current=next_idx + 1, total=len(events),
+        stat_colors=STAT_COLORS, choices_with_status=choices_with_status,
     )
 
 
@@ -128,26 +138,44 @@ def play():
 def choose():
     player = get_player()
     game_key = session.get("game_key", "")
-    events = _game_events.get(game_key, [])
-    current = session.get("current_event", 0)
 
     if not player:
         return redirect(url_for("index"))
 
-    if not events:
-        events = build_events(player)
-        _game_events[game_key] = events
+    # Rebuild events with current history
+    events = build_events(player)
+
+    current_year = session.get("current_year", 0)
+
+    # Find the event for the current year
+    current_event = None
+    for event in events:
+        if event["year"] > current_year:
+            current_event = event
+            break
+
+    if not current_event:
+        return redirect(url_for("ending"))
 
     choice_idx = int(request.form.get("choice", 0))
-    event = events[current]
-    choice = event["choices"][choice_idx]
+
+    # Validate that the choice is available to the player
+    choices_with_status = get_available_choices(current_event["choices"], player)
+    if choice_idx >= len(choices_with_status) or not choices_with_status[choice_idx][1]:
+        return redirect(url_for("play"))
+
+    choice = current_event["choices"][choice_idx]
 
     player.apply_effects(choice["effects"])
     if "tag" in choice:
         player.history.append(choice["tag"])
 
+    # Save the new year and player state
+    session["current_year"] = current_event["year"]
     save_player(player)
-    session["current_event"] = current + 1
+
+    # Rebuild events for next play (consequence events may have changed)
+    _game_events[game_key] = build_events(player)
 
     return redirect(url_for("play"))
 

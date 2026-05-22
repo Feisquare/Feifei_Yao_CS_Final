@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life Simulator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='scenes.css') }}">
 </head>
 <body>
     <div class="container">
@@ -102,6 +103,13 @@
             <span class="age">Age {{ event.year }}</span>
         </div>
 
+        <!-- Scene Animation -->
+        <div class="scene-container">
+            <div class="scene scene-{{ event.scene }}">
+                <div class="scene-bg"></div>
+            </div>
+        </div>
+
         <div class="story-card">
             <p>{{ event.text }}</p>
         </div>
@@ -109,11 +117,24 @@
         <h3 class="choose-label">What will you do?</h3>
 
         <form method="POST" action="/choose" class="choices">
-            {% for choice in event.choices %}
-            <button type="submit" name="choice" value="{{ loop.index0 }}" class="btn btn-choice">
-                <span class="choice-num">{{ loop.index }}.</span>
-                {{ choice.text }}
-            </button>
+            {% for choice, available in choices_with_status %}
+                {% if available %}
+                <button type="submit" name="choice" value="{{ loop.index0 }}" class="btn btn-choice">
+                    <span class="choice-num">{{ loop.index }}.</span>
+                    {{ choice.text }}
+                </button>
+                {% else %}
+                <div class="btn btn-choice btn-locked">
+                    <span class="choice-num">{{ loop.index }}.</span>
+                    <span class="lock-icon">&#128274;</span>
+                    {{ choice.text }}
+                    <span class="req-text">
+                        {% for stat, val in choice.requires.items() %}
+                            Requires {{ stat }} {{ val }}+
+                        {% endfor %}
+                    </span>
+                </div>
+                {% endif %}
             {% endfor %}
         </form>
 
