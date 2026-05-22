@@ -22,8 +22,76 @@
             <form method="POST" action="/start" class="start-form">
                 <label for="name">Enter your name:</label>
                 <input type="text" id="name" name="name" placeholder="Your name..." autofocus>
-                <button type="submit" class="btn btn-primary">New Game</button>
+                <button type="submit" class="btn btn-primary">Begin Your Life</button>
             </form>
+        </div>
+
+        {% elif screen in ["gender", "family", "appearance", "personality"] %}
+        <!-- ── CHARACTER CREATION ── -->
+        <div class="center-box">
+            {% if screen == "gender" %}
+            <h1 class="title">Who Are You?</h1>
+            <p class="subtitle">What is your gender?</p>
+            <form method="POST" action="/gender" class="choice-cards">
+                {% for opt in options %}
+                <label class="card-option">
+                    <input type="radio" name="gender" value="{{ opt.id }}" {% if loop.first %}checked{% endif %}>
+                    <div class="card">
+                        <h3>{{ opt.text }}</h3>
+                    </div>
+                </label>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </form>
+
+            {% elif screen == "family" %}
+            <h1 class="title">Your Origins</h1>
+            <p class="subtitle">What is your family background?</p>
+            <form method="POST" action="/family" class="choice-cards">
+                {% for opt in options %}
+                <label class="card-option">
+                    <input type="radio" name="family" value="{{ opt.id }}" {% if loop.first %}checked{% endif %}>
+                    <div class="card">
+                        <h3>{{ opt.text }}</h3>
+                        <p>{{ opt.desc }}</p>
+                    </div>
+                </label>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </form>
+
+            {% elif screen == "appearance" %}
+            <h1 class="title">Your Look</h1>
+            <p class="subtitle">What do you look like?</p>
+            <form method="POST" action="/appearance" class="choice-cards">
+                {% for opt in options %}
+                <label class="card-option">
+                    <input type="radio" name="appearance" value="{{ opt.id }}" {% if loop.first %}checked{% endif %}>
+                    <div class="card">
+                        <h3>{{ opt.text }}</h3>
+                        <p>{{ opt.desc }}</p>
+                    </div>
+                </label>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </form>
+
+            {% elif screen == "personality" %}
+            <h1 class="title">Your Soul</h1>
+            <p class="subtitle">What is your personality?</p>
+            <form method="POST" action="/personality" class="choice-cards">
+                {% for opt in options %}
+                <label class="card-option">
+                    <input type="radio" name="personality" value="{{ opt.id }}" {% if loop.first %}checked{% endif %}>
+                    <div class="card">
+                        <h3>{{ opt.text }}</h3>
+                        <p>{{ opt.desc }}</p>
+                    </div>
+                </label>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Start Life</button>
+            </form>
+            {% endif %}
         </div>
 
         {% elif screen == "game" %}
