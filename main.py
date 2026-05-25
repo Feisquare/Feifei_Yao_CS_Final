@@ -234,7 +234,7 @@ def build_events(player):
         },
         {
             "year": 15,
-            "scene": "school",
+            "scene": "school-crush",
             "text": "You spot your crush across the cafeteria. Your heart does a backflip. Your friend says they think the feeling is mutual. Your palms are sweaty. Mom's spaghetti.",
             "choices": [
                 {"text": "Confess your love with a dramatic speech from a movie", "effects": {"Happiness": 15, "Social": 10, "Intelligence": -5}, "tag": "early_romance"},
@@ -276,7 +276,7 @@ def build_events(player):
     if player.has_history("early_romance") or player.has_history("crush_yes"):
         events.append({
             "year": 17,
-            "scene": "school",
+            "scene": "prom",
             "text": "Your teacher found out about your relationship. She calls your parents. Your mom is more excited than angry. Your dad asks if they're 'the one.' This is so embarrassing.",
             "choices": [
                 {"text": "Accept the lecture and cool things off", "effects": {"Intelligence": 10, "Happiness": -5}, "tag": "accept_scolding"},
@@ -287,7 +287,7 @@ def build_events(player):
     else:
         events.append({
             "year": 17,
-            "scene": "school",
+            "scene": "prom",
             "text": "It's junior year. Everyone's talking about prom. You see couples everywhere. You're starting to wonder if you'll die alone with your cat. You don't even have a cat.",
             "choices": [
                 {"text": "Ask your crush to prom with a flash mob that goes viral", "effects": {"Social": 15, "Happiness": 15}, "tag": "prom_flash_mob"},
@@ -382,7 +382,7 @@ def build_events(player):
         },
         {
             "year": 30,
-            "scene": "office",
+            "scene": "promotion",
             "text": "Your boss offers you a promotion. More money, but you'd work 80 hours a week. Your desk plant is already dead. Your social life is next.",
             "choices": [
                 {"text": "Take the promotion. Sleep is for the weak!", "effects": {"Wealth": 25, "Happiness": -15, "Health": -10}, "tag": "promotion"},
@@ -398,7 +398,7 @@ def build_events(player):
         },
         {
             "year": 40,
-            "scene": "street",
+            "scene": "midlife",
             "text": "You're turning 40. You buy a sports car. Your back hurts getting out of it. Your knees make sounds when you stand up. Welcome to your midlife crisis.",
             "choices": [
                 {"text": "Quit your job and become a professional skydiver", "effects": {"Happiness": 20, "Wealth": -25, "Health": -5}, "tag": "skydiver"},
@@ -440,7 +440,7 @@ def build_events(player):
         },
         {
             "year": 70,
-            "scene": "home",
+            "scene": "grandkids",
             "text": "Your kids have kids now. You're a grandparent. Your grandkids ask you to play Fortnite. You accidentally delete their save file. They don't talk to you for a week.",
             "choices": [
                 {"text": "Spoil them rotten. Buy them everything. Revenge is sweet.", "effects": {"Happiness": 20, "Wealth": -15, "Social": 10}, "tag": "spoil_grandkids"},
@@ -450,7 +450,7 @@ def build_events(player):
         },
         {
             "year": 80,
-            "scene": "home",
+            "scene": "reflection",
             "text": "An old friend visits. 'If you could do it all over again, what would you change?' they ask. You think about the crayon incident. It all started there.",
             "choices": [
                 {"text": "Nothing. Every mistake was a plot twist in my story.", "effects": {"Happiness": 20, "Intelligence": 5}, "tag": "no_regrets"},
@@ -460,7 +460,7 @@ def build_events(player):
         },
         {
             "year": 90,
-            "scene": "home",
+            "scene": "journalist",
             "text": "A young journalist wants to write your life story. 'So it all began with a crayon?' they ask. 'Yes,' you say. 'The best stories always start with something ridiculous.'",
             "choices": [
                 {"text": "Share everything. Your story deserves to be told.", "effects": {"Social": 20, "Happiness": 15}, "tag": "share_story"},

@@ -106,7 +106,68 @@
         <!-- Scene Animation -->
         <div class="scene-container">
             <div class="scene scene-{{ event.scene }}">
-                <div class="scene-bg"></div>
+                {% if event.scene == "kindergarten" %}
+                    <div class="kid-eating"></div>
+                    <div class="teacher"></div>
+                {% elif event.scene == "playground" %}
+                    <div class="bully"></div>
+                    <div class="victim"></div>
+                    <div class="money"></div>
+                {% elif event.scene == "school" %}
+                    <div class="performer"></div>
+                    <div class="audience"></div>
+                {% elif event.scene == "gym" %}
+                    <div class="celery-kid"></div>
+                {% elif event.scene == "school-crush" %}
+                    <div class="crush"></div>
+                    <div class="player-look"></div>
+                    <div class="heart"></div>
+                {% elif event.scene == "street" %}
+                    <div class="sign">HELP WANTED</div>
+                    <div class="player-job"></div>
+                {% elif event.scene == "prom" %}
+                    <div class="dancer1"></div>
+                    <div class="dancer2"></div>
+                {% elif event.scene == "party" %}
+                    <div class="party-person"></div>
+                    <div class="party-person2"></div>
+                    <div class="cat"></div>
+                {% elif event.scene == "office" %}
+                    <div class="player-decide"></div>
+                {% elif event.scene == "home" %}
+                    <div class="couple"></div>
+                    <div class="anime"></div>
+                {% elif event.scene == "promotion" %}
+                    <div class="letter"></div>
+                    <div class="coffee"></div>
+                {% elif event.scene == "midlife" %}
+                    <div class="back-pain"></div>
+                {% elif event.scene == "hospital" %}
+                    <div class="clipboard"></div>
+                    <div class="monitor"></div>
+                {% elif event.scene == "retirement" %}
+                    <div class="balloon1"></div>
+                    <div class="balloon2"></div>
+                    <div class="banner">GOODBYE!</div>
+                {% elif event.scene == "grandkids" %}
+                    <div class="grandma"></div>
+                    <div class="controller"></div>
+                    <div class="grandkid"></div>
+                {% elif event.scene == "reflection" %}
+                    <div class="chair1"></div>
+                    <div class="chair2"></div>
+                    <div class="friend1"></div>
+                    <div class="friend2"></div>
+                    <div class="thought">The crayon incident...</div>
+                {% elif event.scene == "journalist" %}
+                    <div class="elder"></div>
+                    <div class="journalist"></div>
+                    <div class="speech"></div>
+                {% elif event.scene == "graveyard" %}
+                    <div class="flowers"></div>
+                    <div class="flowers2"></div>
+                    <div class="stars"></div>
+                {% endif %}
             </div>
         </div>
 

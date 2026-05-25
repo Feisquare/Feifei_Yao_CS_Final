@@ -6,499 +6,1368 @@
 
 .scene {
     width: 100%;
-    height: 160px;
+    height: 180px;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
+    border: 2px solid #374151;
 }
 
-.scene-bg {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* ── KINDERGARTEN ── */
+/* ── KINDERGARTEN: Kid eating a crayon, teacher facepalming ── */
 
 .scene-kindergarten {
-    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 60%, #90EE90 60%, #90EE90 100%);
+    background: linear-gradient(180deg, #FFE4B5 0%, #FFE4B5 70%, #DEB887 70%);
 }
 
-.scene-kindergarten .scene-bg::before {
+/* Crayons on floor */
+.scene-kindergarten::before {
     content: '';
     position: absolute;
-    bottom: 20px;
-    left: 30px;
+    bottom: 25px;
+    left: 40%;
+    width: 8px;
+    height: 30px;
+    background: #FF6B6B;
+    border-radius: 2px;
+    transform: rotate(20deg);
+    animation: crayon-wobble 2s ease-in-out infinite;
+}
+
+.scene-kindergarten::after {
+    content: '';
+    position: absolute;
+    bottom: 22px;
+    left: 55%;
+    width: 8px;
+    height: 30px;
+    background: #4ECDC4;
+    border-radius: 2px;
+    transform: rotate(-15deg);
+    animation: crayon-wobble 2s ease-in-out infinite 0.5s;
+}
+
+/* Kid eating crayon */
+.scene-kindergarten .kid-eating {
+    position: absolute;
+    bottom: 30px;
+    left: 30%;
+    width: 30px;
+    height: 45px;
+    background: #FFD93D;
+    border-radius: 50% 50% 30% 30%;
+    animation: kid-munch 0.8s ease-in-out infinite;
+}
+
+.scene-kindergarten .kid-eating::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background: #FFD93D;
+    border-radius: 50%;
+}
+
+.scene-kindergarten .kid-eating::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 20px;
+    height: 4px;
+    background: #FF6B6B;
+    border-radius: 2px;
+    animation: crayon-in-mouth 0.8s ease-in-out infinite;
+}
+
+/* Teacher facepalming */
+.scene-kindergarten .teacher {
+    position: absolute;
+    bottom: 30px;
+    right: 20%;
+    width: 35px;
+    height: 55px;
+    background: #9C27B0;
+    border-radius: 50% 50% 30% 30%;
+}
+
+.scene-kindergarten .teacher::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 7px;
+    width: 22px;
+    height: 22px;
+    background: #FFDBB4;
+    border-radius: 50%;
+}
+
+.scene-kindergarten .teacher::after {
+    content: '🤦';
+    position: absolute;
+    top: -15px;
+    left: 25px;
+    font-size: 20px;
+    animation: facepalm 2s ease-in-out infinite;
+}
+
+@keyframes crayon-wobble {
+    0%, 100% { transform: rotate(20deg); }
+    50% { transform: rotate(25deg) translateY(-2px); }
+}
+
+@keyframes kid-munch {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.95); }
+}
+
+@keyframes crayon-in-mouth {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-3px); }
+}
+
+@keyframes facepalm {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-10deg); }
+}
+
+/* ── PLAYGROUND: Bully stealing lunch money ── */
+
+.scene-playground {
+    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 55%, #F4E285 55%, #90EE90 100%);
+}
+
+/* Bully */
+.scene-playground .bully {
+    position: absolute;
+    bottom: 30px;
+    left: 25%;
+    width: 35px;
+    height: 50px;
+    background: #333;
+    border-radius: 50% 50% 30% 30%;
+    animation: bully-stance 1.5s ease-in-out infinite;
+}
+
+.scene-playground .bully::before {
+    content: '😈';
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    font-size: 18px;
+}
+
+.scene-playground .bully::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: -25px;
+    width: 25px;
+    height: 8px;
+    background: #FFDBB4;
+    border-radius: 4px;
+    animation: bully-arm 1.5s ease-in-out infinite;
+}
+
+/* Victim crying */
+.scene-playground .victim {
+    position: absolute;
+    bottom: 30px;
+    right: 25%;
+    width: 30px;
+    height: 45px;
+    background: #4ECDC4;
+    border-radius: 50% 50% 30% 30%;
+}
+
+.scene-playground .victim::before {
+    content: '😭';
+    position: absolute;
+    top: -20px;
+    left: 3px;
+    font-size: 18px;
+    animation: cry-shake 0.5s ease-in-out infinite;
+}
+
+/* Money flying */
+.scene-playground .money {
+    position: absolute;
+    bottom: 60px;
+    left: 45%;
+    width: 15px;
+    height: 8px;
+    background: #4CAF50;
+    border-radius: 2px;
+    animation: money-fly 2s ease-in-out infinite;
+}
+
+@keyframes bully-stance {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+@keyframes bully-arm {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-20deg); }
+}
+
+@keyframes cry-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+@keyframes money-fly {
+    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    50% { transform: translate(20px, -30px) rotate(180deg); opacity: 0.8; }
+    100% { transform: translate(40px, 0) rotate(360deg); opacity: 1; }
+}
+
+/* ── SCHOOL/TALENT SHOW: Kid performing badly on stage ── */
+
+.scene-school {
+    background: linear-gradient(180deg, #2C003E 0%, #2C003E 30%, #8B4513 30%, #DEB887 100%);
+}
+
+/* Stage spotlight */
+.scene-school::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-top: 100px solid rgba(255, 255, 0, 0.15);
+    animation: spotlight-sway 3s ease-in-out infinite;
+}
+
+/* Performer on stage */
+.scene-school .performer {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 45px;
+    background: #FF6B6B;
+    border-radius: 50% 50% 30% 30%;
+    animation: performer-dance 1s ease-in-out infinite;
+}
+
+.scene-school .performer::before {
+    content: '🎤';
+    position: absolute;
+    top: 5px;
+    right: -15px;
+    font-size: 16px;
+}
+
+.scene-school .performer::after {
+    content: '😰';
+    position: absolute;
+    top: -20px;
+    left: 3px;
+    font-size: 18px;
+}
+
+/* Audience */
+.scene-school .audience {
+    position: absolute;
+    bottom: 10px;
+    left: 10%;
+    width: 80%;
+    height: 20px;
+    background: repeating-linear-gradient(
+        90deg,
+        #333 0px,
+        #333 15px,
+        transparent 15px,
+        transparent 20px
+    );
+    border-radius: 10px 10px 0 0;
+}
+
+@keyframes spotlight-sway {
+    0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+    50% { transform: translateX(-50%) rotate(5deg); }
+}
+
+@keyframes performer-dance {
+    0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+    50% { transform: translateX(-50%) rotate(5deg); }
+}
+
+/* ── GYM: Kids offering celery behind the gym ── */
+
+.scene-gym {
+    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 50%, #808080 50%, #696969 100%);
+}
+
+/* Gym building */
+.scene-gym::before {
+    content: 'GYM';
+    position: absolute;
+    top: 20px;
+    left: 10%;
+    width: 100px;
+    height: 60px;
+    background: #DEB887;
+    border: 3px solid #8B4513;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #8B4513;
+    font-size: 14px;
+}
+
+/* Kids behind gym */
+.scene-gym .celery-kid {
+    position: absolute;
+    bottom: 25px;
+    right: 20%;
+    width: 28px;
+    height: 40px;
+    background: #FF6B6B;
+    border-radius: 50% 50% 30% 30%;
+    animation: kid-sneak 2s ease-in-out infinite;
+}
+
+.scene-gym .celery-kid::before {
+    content: '🥬';
+    position: absolute;
+    top: -5px;
+    right: -20px;
+    font-size: 20px;
+    animation: celery-wave 1s ease-in-out infinite;
+}
+
+.scene-gym .celery-kid::after {
+    content: '😏';
+    position: absolute;
+    top: -18px;
+    left: 3px;
+    font-size: 16px;
+}
+
+@keyframes kid-sneak {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-10px); }
+}
+
+@keyframes celery-wave {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(20deg); }
+}
+
+/* ── SCHOOL/CRUSH: Heart floating over crush in cafeteria ── */
+
+.scene-school-crush {
+    background: linear-gradient(180deg, #FFE4E1 0%, #FFE4E1 100%);
+}
+
+/* Cafeteria tables */
+.scene-school-crush::before {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 20%;
+    width: 60%;
+    height: 40px;
+    background: #DEB887;
+    border-radius: 5px;
+    border: 2px solid #8B4513;
+}
+
+/* Crush sitting */
+.scene-school-crush .crush {
+    position: absolute;
+    bottom: 50px;
+    left: 55%;
     width: 25px;
     height: 35px;
-    background: #FFD93D;
-    border-radius: 50% 50% 0 0;
-    animation: kid-bounce 1s ease-in-out infinite;
+    background: #FF69B4;
+    border-radius: 50% 50% 30% 30%;
 }
 
-.scene-kindergarten .scene-bg::after {
+.scene-school-crush .crush::before {
+    content: '😍';
+    position: absolute;
+    top: -20px;
+    left: 0px;
+    font-size: 18px;
+}
+
+/* Heart floating */
+.scene-school-crush .heart {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    font-size: 30px;
+    animation: heart-float 2s ease-in-out infinite;
+}
+
+.scene-school-crush .heart::before {
+    content: '❤️';
+}
+
+/* Player looking */
+.scene-school-crush .player-look {
+    position: absolute;
+    bottom: 50px;
+    left: 25%;
+    width: 25px;
+    height: 35px;
+    background: #4ECDC4;
+    border-radius: 50% 50% 30% 30%;
+}
+
+.scene-school-crush .player-look::before {
+    content: '😳';
+    position: absolute;
+    top: -20px;
+    left: 0px;
+    font-size: 18px;
+    animation: stare 1.5s ease-in-out infinite;
+}
+
+@keyframes heart-float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.2); }
+}
+
+@keyframes stare {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ── STREET: Job hunting, "HELP WANTED" sign ── */
+
+.scene-street {
+    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 45%, #808080 45%, #696969 55%, #808080 55%);
+}
+
+/* Shop */
+.scene-street::before {
     content: '';
     position: absolute;
-    bottom: 20px;
-    left: 80px;
+    bottom: 30px;
+    left: 30%;
+    width: 100px;
+    height: 70px;
+    background: #DEB887;
+    border: 3px solid #8B4513;
+}
+
+/* Help wanted sign */
+.scene-street .sign {
+    position: absolute;
+    bottom: 80px;
+    left: 35%;
+    width: 60px;
+    height: 25px;
+    background: #FF6B6B;
+    border: 2px solid #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: #FFF;
+    font-weight: bold;
+    animation: sign-swing 2s ease-in-out infinite;
+}
+
+/* Player looking at sign */
+.scene-street .player-job {
+    position: absolute;
+    bottom: 30px;
+    right: 25%;
+    width: 28px;
+    height: 40px;
+    background: #4ECDC4;
+    border-radius: 50% 50% 30% 30%;
+}
+
+.scene-street .player-job::before {
+    content: '🤔';
+    position: absolute;
+    top: -20px;
+    left: 3px;
+    font-size: 18px;
+}
+
+@keyframes sign-swing {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+/* ── SCHOOL/PROM: Prom scene with dancing ── */
+
+.scene-prom {
+    background: linear-gradient(180deg, #2C003E 0%, #2C003E 100%);
+}
+
+/* Disco ball */
+.scene-prom::before {
+    content: '🪩';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    animation: disco-spin 3s linear infinite;
+}
+
+/* Dancers */
+.scene-prom .dancer1 {
+    position: absolute;
+    bottom: 30px;
+    left: 30%;
+    width: 25px;
+    height: 40px;
+    background: #FF6B6B;
+    border-radius: 50% 50% 30% 30%;
+    animation: dance-move 1s ease-in-out infinite;
+}
+
+.scene-prom .dancer2 {
+    position: absolute;
+    bottom: 30px;
+    right: 30%;
+    width: 25px;
+    height: 40px;
+    background: #4ECDC4;
+    border-radius: 50% 50% 30% 30%;
+    animation: dance-move 1s ease-in-out infinite 0.5s;
+}
+
+.scene-prom .dancer1::before {
+    content: '🕺';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 18px;
+}
+
+.scene-prom .dancer2::before {
+    content: '💃';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 18px;
+}
+
+@keyframes disco-spin {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes dance-move {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* ── PARTY: House party with cat in corner ── */
+
+.scene-party {
+    background: linear-gradient(180deg, #1a002e 0%, #1a002e 100%);
+}
+
+/* Music notes */
+.scene-party::before {
+    content: '🎵 🎶 🎵';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    animation: notes-float 2s ease-in-out infinite;
+    letter-spacing: 10px;
+}
+
+/* Party people */
+.scene-party .party-person {
+    position: absolute;
+    bottom: 30px;
+    left: 20%;
     width: 25px;
     height: 35px;
     background: #FF6B6B;
-    border-radius: 50% 50% 0 0;
-    animation: kid-bounce 1s ease-in-out infinite 0.5s;
+    border-radius: 50% 50% 30% 30%;
+    animation: party-jump 0.8s ease-in-out infinite;
 }
 
-.scene-kindergarten .scene-bg {
-    background:
-        radial-gradient(circle at 150px 30px, #FF6B6B 3px, transparent 3px),
-        radial-gradient(circle at 200px 50px, #4ECDC4 3px, transparent 3px),
-        radial-gradient(circle at 250px 20px, #FFE66D 3px, transparent 3px),
-        radial-gradient(circle at 300px 60px, #95E1D3 3px, transparent 3px);
-    animation: crayons-fall 3s linear infinite;
+.scene-party .party-person2 {
+    position: absolute;
+    bottom: 30px;
+    left: 40%;
+    width: 25px;
+    height: 35px;
+    background: #FFE66D;
+    border-radius: 50% 50% 30% 30%;
+    animation: party-jump 0.8s ease-in-out infinite 0.3s;
 }
 
-@keyframes kid-bounce {
+/* Cat in corner */
+.scene-party .cat {
+    position: absolute;
+    bottom: 25px;
+    right: 15%;
+    font-size: 25px;
+    animation: cat-sit 3s ease-in-out infinite;
+}
+
+.scene-party .cat::before {
+    content: '🐱';
+}
+
+.scene-party .cat::after {
+    content: '💬 "Meow"';
+    position: absolute;
+    top: -25px;
+    left: -20px;
+    font-size: 10px;
+    color: #FFF;
+    background: #333;
+    padding: 2px 6px;
+    border-radius: 8px;
+    opacity: 0;
+    animation: cat-talk 4s ease-in-out infinite 2s;
+}
+
+@keyframes notes-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes party-jump {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
 }
 
-@keyframes crayons-fall {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 160px; }
+@keyframes cat-sit {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
-/* ── PLAYGROUND ── */
-
-.scene-playground {
-    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 50%, #F4E285 50%, #F4E285 100%);
+@keyframes cat-talk {
+    0%, 80%, 100% { opacity: 0; }
+    85%, 95% { opacity: 1; }
 }
 
-.scene-playground .scene-bg::before {
-    content: '';
-    position: absolute;
-    bottom: 30px;
-    right: 60px;
-    width: 8px;
-    height: 80px;
-    background: #8B4513;
-}
-
-.scene-playground .scene-bg::after {
-    content: '';
-    position: absolute;
-    bottom: 80px;
-    right: 40px;
-    width: 50px;
-    height: 8px;
-    background: #FF6B6B;
-    transform-origin: right center;
-    animation: swing-move 2s ease-in-out infinite;
-    border-radius: 4px;
-}
-
-@keyframes swing-move {
-    0%, 100% { transform: rotate(-20deg); }
-    50% { transform: rotate(20deg); }
-}
-
-/* ── SCHOOL ── */
-
-.scene-school {
-    background: linear-gradient(180deg, #F5F5DC 0%, #F5F5DC 100%);
-}
-
-.scene-school .scene-bg::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 80px;
-    background: #2C3E50;
-    border: 4px solid #8B4513;
-    border-radius: 2px;
-}
-
-.scene-school .scene-bg::after {
-    content: '';
-    position: absolute;
-    top: 40px;
-    left: 50%;
-    width: 20px;
-    height: 15px;
-    background: #FFF;
-    transform: rotate(-10deg);
-    animation: paper-airplane 4s linear infinite;
-    clip-path: polygon(0 50%, 100% 0, 100% 100%);
-}
-
-@keyframes paper-airplane {
-    0% { left: 30%; top: 40px; opacity: 1; }
-    100% { left: 80%; top: 10px; opacity: 0; }
-}
-
-/* ── GYM ── */
-
-.scene-gym {
-    background: linear-gradient(180deg, #DEB887 0%, #DEB887 100%);
-}
-
-.scene-gym .scene-bg::before {
-    content: '';
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 60px;
-    border: 4px solid #FFF;
-    border-bottom: none;
-    border-radius: 60px 60px 0 0;
-}
-
-.scene-gym .scene-bg::after {
-    content: '';
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    width: 20px;
-    height: 20px;
-    background: #FF6B6B;
-    border-radius: 50%;
-    animation: ball-bounce 1s ease-in-out infinite;
-}
-
-@keyframes ball-bounce {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, -40px); }
-}
-
-/* ── STREET ── */
-
-.scene-street {
-    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 40%, #696969 40%, #696969 55%, #808080 55%, #808080 100%);
-}
-
-.scene-street .scene-bg::before {
-    content: '';
-    position: absolute;
-    bottom: 30px;
-    left: -50px;
-    width: 40px;
-    height: 25px;
-    background: #FF6B6B;
-    border-radius: 5px;
-    animation: car-drive 4s linear infinite;
-}
-
-.scene-street .scene-bg::after {
-    content: '';
-    position: absolute;
-    bottom: 30px;
-    right: -50px;
-    width: 40px;
-    height: 25px;
-    background: #4ECDC4;
-    border-radius: 5px;
-    animation: car-drive-reverse 5s linear infinite;
-}
-
-@keyframes car-drive {
-    0% { left: -50px; }
-    100% { left: 110%; }
-}
-
-@keyframes car-drive-reverse {
-    0% { right: -50px; }
-    100% { right: 110%; }
-}
-
-/* ── OFFICE ── */
+/* ── OFFICE: Startup vs Corporate doors ── */
 
 .scene-office {
     background: linear-gradient(180deg, #F5F5F5 0%, #F5F5F5 100%);
 }
 
-.scene-office .scene-bg::before {
-    content: '';
+/* Startup door */
+.scene-office::before {
+    content: 'STARTUP';
+    position: absolute;
+    bottom: 20px;
+    left: 20%;
+    width: 70px;
+    height: 90px;
+    background: #FF6B6B;
+    border: 3px solid #FFF;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #FFF;
+    font-weight: bold;
+    animation: door-glow-red 2s ease-in-out infinite;
+}
+
+/* Corporate door */
+.scene-office::after {
+    content: 'CORPORATE';
+    position: absolute;
+    bottom: 20px;
+    right: 20%;
+    width: 70px;
+    height: 90px;
+    background: #4ECDC4;
+    border: 3px solid #FFF;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #FFF;
+    font-weight: bold;
+    animation: door-glow-blue 2s ease-in-out infinite;
+}
+
+/* Player deciding */
+.scene-office .player-decide {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 60px;
-    background: #8B4513;
-    border-radius: 2px;
-}
-
-.scene-office .scene-bg::after {
-    content: '';
-    position: absolute;
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 30px;
-    background: #333;
-    border-radius: 2px;
-}
-
-/* Coffee steam */
-.scene-office .scene-bg {
-    background:
-        radial-gradient(ellipse at 65% 20px, rgba(255,255,255,0.6) 0%, transparent 50%),
-        radial-gradient(ellipse at 60% 10px, rgba(255,255,255,0.4) 0%, transparent 40%);
-    animation: steam-rise 3s ease-in-out infinite;
-}
-
-@keyframes steam-rise {
-    0%, 100% { opacity: 0.3; transform: translateY(0); }
-    50% { opacity: 0.8; transform: translateY(-10px); }
-}
-
-/* ── PARTY ── */
-
-.scene-party {
-    background: linear-gradient(180deg, #2C003E 0%, #2C003E 100%);
-}
-
-.scene-party .scene-bg::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 20px;
-    width: 15px;
-    height: 25px;
-    background: #FF6B6B;
-    border-radius: 50% 50% 0 0;
-    animation: balloon-float 3s ease-in-out infinite;
-}
-
-.scene-party .scene-bg::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 30px;
-    width: 15px;
-    height: 25px;
-    background: #4ECDC4;
-    border-radius: 50% 50% 0 0;
-    animation: balloon-float 3s ease-in-out infinite 1s;
-}
-
-.scene-party .scene-bg {
-    background:
-        radial-gradient(circle at 100px 0, #FFE66D 0px, #FFE66D 12px, transparent 12px),
-        radial-gradient(circle at 200px 0, #95E1D3 0px, #95E1D3 12px, transparent 12px);
-    background-size: 100% 100%;
-    animation: balloon-float 4s ease-in-out infinite 0.5s;
-}
-
-@keyframes balloon-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-80px); }
-}
-
-/* ── HOSPITAL ── */
-
-.scene-hospital {
-    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
-}
-
-.scene-hospital .scene-bg::before {
-    content: '';
-    position: absolute;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 60px;
-    background: #E8F5E9;
-    border: 2px solid #4CAF50;
-    border-radius: 5px;
-}
-
-.scene-hospital .scene-bg::after {
-    content: '';
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 3px;
-    background: #4CAF50;
-    animation: heartbeat 1.5s ease-in-out infinite;
-    clip-path: polygon(0 50%, 15% 50%, 20% 20%, 25% 80%, 30% 50%, 45% 50%, 50% 10%, 55% 90%, 60% 50%, 100% 50%);
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: translateX(-50%) scaleY(1); }
-    50% { transform: translateX(-50%) scaleY(1.5); }
-}
-
-/* ── WEDDING ── */
-
-.scene-wedding {
-    background: linear-gradient(180deg, #FFE4E1 0%, #FFE4E1 100%);
-}
-
-.scene-wedding .scene-bg::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
+    width: 28px;
     height: 40px;
-    border: 4px solid #FFD700;
-    border-radius: 50%;
-    animation: rings-spin 3s linear infinite;
+    background: #FFD93D;
+    border-radius: 50% 50% 30% 30%;
 }
 
-.scene-wedding .scene-bg::after {
-    content: '';
+.scene-office .player-decide::before {
+    content: '😰';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    border: 4px solid #FFD700;
-    border-radius: 50%;
-    animation: rings-spin 3s linear infinite reverse;
+    top: -20px;
+    left: 3px;
+    font-size: 18px;
+    animation: decide-look 2s ease-in-out infinite;
 }
 
-@keyframes rings-spin {
-    0% { transform: translate(-50%, -50%) rotateY(0deg); }
-    100% { transform: translate(-50%, -50%) rotateY(360deg); }
+@keyframes door-glow-red {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 107, 107, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(255, 107, 107, 0.8); }
 }
 
-/* ── RETIREMENT ── */
-
-.scene-retirement {
-    background: linear-gradient(180deg, #FF6B35 0%, #FF6B35 30%, #FFD700 30%, #FFD700 35%, #87CEEB 35%, #87CEEB 55%, #1E90FF 55%, #1E90FF 100%);
+@keyframes door-glow-blue {
+    0%, 100% { box-shadow: 0 0 5px rgba(78, 205, 196, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(78, 205, 196, 0.8); }
 }
 
-.scene-retirement .scene-bg::before {
-    content: '';
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    width: 15px;
-    height: 80px;
-    background: #8B4513;
+@keyframes decide-look {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    75% { transform: rotate(15deg); }
 }
 
-.scene-retirement .scene-bg::after {
-    content: '';
-    position: absolute;
-    bottom: 70px;
-    left: 15px;
-    width: 45px;
-    height: 35px;
-    background: #228B22;
-    border-radius: 50% 50% 0 0;
-}
-
-/* Waves */
-.scene-retirement .scene-bg {
-    background:
-        linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
-    background-size: 200px 10px;
-    animation: waves 3s linear infinite;
-}
-
-@keyframes waves {
-    0% { background-position: 0 0; }
-    100% { background-position: 200px 0; }
-}
-
-/* ── HOME ── */
+/* ── HOME: Moving in together, anime posters ── */
 
 .scene-home {
     background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 50%, #90EE90 50%, #90EE90 100%);
 }
 
-.scene-home .scene-bg::before {
+/* House */
+.scene-home::before {
     content: '';
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 50px;
+    width: 100px;
+    height: 60px;
     background: #DEB887;
-    border-radius: 2px;
+    border: 3px solid #8B4513;
 }
 
-.scene-home .scene-bg::after {
+/* Roof */
+.scene-home::after {
     content: '';
     position: absolute;
-    bottom: 60px;
+    bottom: 70px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 30px solid #8B0000;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 35px solid #8B0000;
 }
 
-/* Chimney smoke */
-.scene-home .scene-bg {
-    background:
-        radial-gradient(ellipse at 60% 10px, rgba(200,200,200,0.6) 0%, transparent 50%);
-    animation: smoke-rise 4s ease-out infinite;
+/* Two people */
+.scene-home .couple {
+    position: absolute;
+    bottom: 35px;
+    left: 45%;
+    display: flex;
+    gap: 5px;
 }
 
-@keyframes smoke-rise {
-    0% { opacity: 0.5; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-30px); }
+.scene-home .couple::before {
+    content: '👫';
+    font-size: 25px;
 }
 
-/* ── GRAVEYARD ── */
-
-.scene-graveyard {
-    background: linear-gradient(180deg, #2C3E50 0%, #2C3E50 40%, #1a1a1a 40%, #1a1a1a 100%);
+/* Anime poster */
+.scene-home .anime {
+    position: absolute;
+    bottom: 50px;
+    right: 15%;
+    font-size: 20px;
+    animation: poster-shake 3s ease-in-out infinite;
 }
 
-.scene-graveyard .scene-bg::before {
+.scene-home .anime::before {
+    content: '📺';
+}
+
+@keyframes poster-shake {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(5deg); }
+}
+
+/* ── OFFICE/PROMOTION: Desk with promotion letter ── */
+
+.scene-promotion {
+    background: linear-gradient(180deg, #F5F5F5 0%, #F5F5F5 100%);
+}
+
+/* Desk */
+.scene-promotion::before {
     content: '';
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
-    height: 70px;
-    background: #808080;
-    border-radius: 25px 25px 0 0;
+    width: 120px;
+    height: 50px;
+    background: #8B4513;
+    border-radius: 3px;
 }
 
-.scene-graveyard .scene-bg::after {
-    content: '';
+/* Promotion letter */
+.scene-promotion .letter {
     position: absolute;
-    bottom: 60px;
+    bottom: 55px;
     left: 50%;
     transform: translateX(-50%);
-    width: 20px;
-    height: 3px;
+    width: 40px;
+    height: 25px;
     background: #FFF;
+    border: 2px solid #333;
+    animation: letter-float 2s ease-in-out infinite;
 }
 
-/* Flowers swaying */
-.scene-graveyard .scene-bg {
-    background:
-        radial-gradient(circle at 35% 130px, #FF69B4 3px, transparent 3px),
-        radial-gradient(circle at 37% 128px, #FF1493 3px, transparent 3px),
-        radial-gradient(circle at 65% 130px, #FFD700 3px, transparent 3px),
-        radial-gradient(circle at 67% 128px, #FFA500 3px, transparent 3px);
+.scene-promotion .letter::before {
+    content: 'PROMOTED!';
+    position: absolute;
+    top: 5px;
+    left: -15px;
+    font-size: 8px;
+    color: #FF6B6B;
+    font-weight: bold;
+}
+
+/* Coffee cup */
+.scene-promotion .coffee {
+    position: absolute;
+    bottom: 55px;
+    right: 25%;
+    font-size: 20px;
+    animation: steam 2s ease-in-out infinite;
+}
+
+.scene-promotion .coffee::before {
+    content: '☕';
+}
+
+@keyframes letter-float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+@keyframes steam {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ── STREET/MIDLIFE: Sports car with back pain ── */
+
+.scene-midlife {
+    background: linear-gradient(180deg, #87CEEB 0%, #87CEEB 45%, #808080 45%, #696969 100%);
+}
+
+/* Sports car */
+.scene-midlife::before {
+    content: '🏎️';
+    position: absolute;
+    bottom: 35px;
+    left: 30%;
+    font-size: 40px;
+    animation: car-rev 2s ease-in-out infinite;
+}
+
+/* Person holding back */
+.scene-midlife .back-pain {
+    position: absolute;
+    bottom: 30px;
+    right: 25%;
+    width: 28px;
+    height: 40px;
+    background: #4ECDC4;
+    border-radius: 50% 50% 30% 30%;
+    transform: rotate(20deg);
+}
+
+.scene-midlife .back-pain::before {
+    content: '😖';
+    position: absolute;
+    top: -20px;
+    left: 3px;
+    font-size: 18px;
+    animation: pain-shake 0.5s ease-in-out infinite;
+}
+
+.scene-midlife .back-pain::after {
+    content: '💆';
+    position: absolute;
+    top: 5px;
+    right: -25px;
+    font-size: 15px;
+}
+
+@keyframes car-rev {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+@keyframes pain-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* ── HOSPITAL: Doctor with clipboard ── */
+
+.scene-hospital {
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 100%);
+}
+
+/* Doctor */
+.scene-hospital::before {
+    content: '👨‍⚕️';
+    position: absolute;
+    bottom: 30px;
+    left: 30%;
+    font-size: 40px;
+}
+
+/* Clipboard */
+.scene-hospital .clipboard {
+    position: absolute;
+    bottom: 60px;
+    left: 38%;
+    width: 25px;
+    height: 35px;
+    background: #8B4513;
+    border: 2px solid #FFF;
+    border-radius: 3px;
+    animation: clipboard-check 2s ease-in-out infinite;
+}
+
+.scene-hospital .clipboard::before {
+    content: '📋';
+    font-size: 20px;
+}
+
+/* Heart monitor */
+.scene-hospital .monitor {
+    position: absolute;
+    bottom: 30px;
+    right: 20%;
+    width: 80px;
+    height: 50px;
+    background: #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.scene-hospital .monitor::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #4CAF50;
+    animation: heartbeat-line 1.5s linear infinite;
+}
+
+@keyframes clipboard-check {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-5deg); }
+}
+
+@keyframes heartbeat-line {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ── RETIREMENT: Cake and balloons ── */
+
+.scene-retirement {
+    background: linear-gradient(180deg, #FFE4E1 0%, #FFE4E1 100%);
+}
+
+/* Cake */
+.scene-retirement::before {
+    content: '🎂';
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+}
+
+/* Balloons */
+.scene-retirement .balloon1 {
+    position: absolute;
+    top: 20px;
+    left: 20%;
+    font-size: 25px;
+    animation: balloon-rise 3s ease-in-out infinite;
+}
+
+.scene-retirement .balloon1::before {
+    content: '🎈';
+}
+
+.scene-retirement .balloon2 {
+    position: absolute;
+    top: 30px;
+    right: 20%;
+    font-size: 25px;
+    animation: balloon-rise 3s ease-in-out infinite 1s;
+}
+
+.scene-retirement .balloon2::before {
+    content: '🎈';
+}
+
+/* Goodbye banner */
+.scene-retirement .banner {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 15px;
+    background: #FF6B6B;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    animation: banner-wave 2s ease-in-out infinite;
+}
+
+@keyframes balloon-rise {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes banner-wave {
+    0%, 100% { transform: translateX(-50%) rotate(-2deg); }
+    50% { transform: translateX(-50%) rotate(2deg); }
+}
+
+/* ── HOME/GRANDKIDS: Grandparent with gaming controller ── */
+
+.scene-grandkids {
+    background: linear-gradient(180deg, #FFE4B5 0%, #FFE4B5 100%);
+}
+
+/* Couch */
+.scene-grandkids::before {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 50px;
+    background: #8B4513;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Grandparent */
+.scene-grandkids .grandma {
+    position: absolute;
+    bottom: 50px;
+    left: 35%;
+    font-size: 35px;
+    animation: grandma-play 1s ease-in-out infinite;
+}
+
+.scene-grandkids .grandma::before {
+    content: '👵';
+}
+
+/* Gaming controller */
+.scene-grandkids .controller {
+    position: absolute;
+    bottom: 55px;
+    left: 42%;
+    font-size: 20px;
+    animation: controller-press 0.5s ease-in-out infinite;
+}
+
+.scene-grandkids .controller::before {
+    content: '🎮';
+}
+
+/* Grandkids watching */
+.scene-grandkids .grandkid {
+    position: absolute;
+    bottom: 50px;
+    right: 25%;
+    font-size: 25px;
+}
+
+.scene-grandkids .grandkid::before {
+    content: '👦';
+}
+
+.scene-grandkids .grandkid::after {
+    content: '😱';
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    font-size: 15px;
+    animation: shock 2s ease-in-out infinite;
+}
+
+@keyframes grandma-play {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-5deg); }
+}
+
+@keyframes controller-press {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes shock {
+    0%, 80%, 100% { opacity: 1; }
+    90% { opacity: 0.5; }
+}
+
+/* ── HOME/REFLECTION: Old friends in chairs ── */
+
+.scene-reflection {
+    background: linear-gradient(180deg, #FFA500 0%, #FFA500 40%, #90EE90 40%, #90EE90 100%);
+}
+
+/* Sunset */
+.scene-reflection::before {
+    content: '🌅';
+    position: absolute;
+    top: 10px;
+    right: 20%;
+    font-size: 30px;
+}
+
+/* Two chairs */
+.scene-reflection .chair1 {
+    position: absolute;
+    bottom: 30px;
+    left: 25%;
+    font-size: 30px;
+}
+
+.scene-reflection .chair1::before {
+    content: '🪑';
+}
+
+.scene-reflection .chair2 {
+    position: absolute;
+    bottom: 30px;
+    right: 25%;
+    font-size: 30px;
+}
+
+.scene-reflection .chair2::before {
+    content: '🪑';
+}
+
+/* Old friends */
+.scene-reflection .friend1 {
+    position: absolute;
+    bottom: 50px;
+    left: 25%;
+    font-size: 25px;
+}
+
+.scene-reflection .friend1::before {
+    content: '👴';
+}
+
+.scene-reflection .friend2 {
+    position: absolute;
+    bottom: 50px;
+    right: 25%;
+    font-size: 25px;
+}
+
+.scene-reflection .friend2::before {
+    content: '👵';
+}
+
+/* Thought bubble */
+.scene-reflection .thought {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 15px;
+    background: #FFF;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #333;
+    animation: thought-appear 3s ease-in-out infinite;
+}
+
+.scene-reflection .thought::after {
+    content: '🖍️';
+    margin-left: 5px;
+}
+
+@keyframes thought-appear {
+    0%, 100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    30%, 70% { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── HOME/JOURNALIST: Journalist with notebook ── */
+
+.scene-journalist {
+    background: linear-gradient(180deg, #FFE4B5 0%, #FFE4B5 100%);
+}
+
+/* Couch */
+.scene-journalist::before {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 45px;
+    background: #8B4513;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Elderly person */
+.scene-journalist .elder {
+    position: absolute;
+    bottom: 45px;
+    left: 35%;
+    font-size: 30px;
+}
+
+.scene-journalist .elder::before {
+    content: '👴';
+}
+
+/* Journalist */
+.scene-journalist .journalist {
+    position: absolute;
+    bottom: 45px;
+    right: 25%;
+    font-size: 25px;
+    animation: journalist-write 1s ease-in-out infinite;
+}
+
+.scene-journalist .journalist::before {
+    content: '📝';
+}
+
+/* Speech bubble */
+.scene-journalist .speech {
+    position: absolute;
+    top: 20px;
+    left: 30%;
+    padding: 8px 15px;
+    background: #FFF;
+    border-radius: 20px;
+    font-size: 11px;
+    color: #333;
+    animation: speech-pop 3s ease-in-out infinite;
+}
+
+.scene-journalist .speech::after {
+    content: '"Crayon incident?"';
+}
+
+@keyframes journalist-write {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-3deg); }
+}
+
+@keyframes speech-pop {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    30%, 70% { opacity: 1; transform: scale(1); }
+}
+
+/* ── GRAVEYARD: Tombstone with flowers ── */
+
+.scene-graveyard {
+    background: linear-gradient(180deg, #2C3E50 0%, #2C3E50 40%, #1a1a1a 40%, #1a1a1a 100%);
+}
+
+/* Tombstone */
+.scene-graveyard::before {
+    content: 'R.I.P.';
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 80px;
+    background: #808080;
+    border-radius: 30px 30px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #FFF;
+    font-weight: bold;
+}
+
+/* Flowers */
+.scene-graveyard .flowers {
+    position: absolute;
+    bottom: 20px;
+    left: 30%;
+    font-size: 20px;
     animation: flowers-sway 3s ease-in-out infinite;
 }
 
+.scene-graveyard .flowers::before {
+    content: '💐';
+}
+
+.scene-graveyard .flowers2 {
+    position: absolute;
+    bottom: 20px;
+    right: 30%;
+    font-size: 20px;
+    animation: flowers-sway 3s ease-in-out infinite 1s;
+}
+
+.scene-graveyard .flowers2::before {
+    content: '🌸';
+}
+
+/* Stars */
+.scene-graveyard .stars {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 15px;
+    letter-spacing: 20px;
+}
+
+.scene-graveyard .stars::before {
+    content: '⭐ ⭐ ⭐';
+    animation: stars-twinkle 2s ease-in-out infinite;
+}
+
 @keyframes flowers-sway {
-    0%, 100% { transform: rotate(-2deg); }
-    50% { transform: rotate(2deg); }
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+@keyframes stars-twinkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
