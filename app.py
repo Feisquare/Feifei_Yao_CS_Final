@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from main import (
-    Player, build_events, get_ending, get_available_choices,
-    GENDER_OPTIONS, FAMILY_OPTIONS, APPEARANCE_OPTIONS, PERSONALITY_OPTIONS,
-)
+from engine import Player, get_ending, get_available_choices
+from events_data import build_events, GENDER_OPTIONS, FAMILY_OPTIONS, APPEARANCE_OPTIONS, PERSONALITY_OPTIONS
 
 app = Flask(__name__)
 app.secret_key = "life-simulator-secret-key"

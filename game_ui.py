@@ -3,7 +3,8 @@ from tkinter import messagebox
 import json
 import os
 
-from main import Player, SAMPLE_EVENTS, get_ending, SAVE_FILE
+from engine import Player, get_ending, get_available_choices
+from events_data import build_events, GENDER_OPTIONS, FAMILY_OPTIONS, APPEARANCE_OPTIONS, PERSONALITY_OPTIONS
 
 STAT_COLORS = {
     "Health": "#4CAF50",
